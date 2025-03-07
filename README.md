@@ -12,5 +12,5 @@ Current Version 1.0 (console testing)
 * Landing page is built with HTML, CSS
 
 ## Upcoming Features 
-* Translate what
----
+* React front end UI for the app
+* Concurrent processing for listening input and sending requests to google API
