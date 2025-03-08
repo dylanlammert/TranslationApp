@@ -1,0 +1,174 @@
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    text-align: left;
+    background-color: white;
+    overflow-x: hidden;
+}
+.nav {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    height: fit-content;
+    align-items: center;
+    padding: 32px;
+}
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    color: black;
+    width: auto;
+    height:fit-content;
+    gap: 8px;
+}
+.note {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: black;
+    color: #C7FFD8;
+    height: fit-content;
+    width: 100%;
+    font-size: 12px;
+}
+.btn {
+    background: black;
+    border-radius: 15px;
+    color: #C7FFD8;
+    border-width: 0;
+    padding: 8px
+}
+.herocontent {
+    width: auto;
+    overflow: hidden;
+    padding:32px;
+}
+
+
+.imgcontent {
+    border-radius: 50px;
+    width: 100%;
+}
+
+
+.climate-crisis-title {
+    font-family: "Climate Crisis", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 120px;
+    font-variation-settings:
+      "YEAR" 1979;
+}
+.climate-crisis-logo {
+    font-family: "Climate Crisis", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    font-variation-settings:
+      "YEAR" 1979;
+}
+.cta-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: white;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.features {
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 800px;
+}
+
+.feature {
+    background: white;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#download {
+    background: #C7FFD8;
+    color: black;
+    padding: 50px 20px;
+    background-image: url(./images/transparent_grey_grid.png);
+}
+
+.download-button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background: black;
+    color: #C7FFD8;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.textGradient {
+    background-image: linear-gradient(45deg, rgb(255, 0, 144) 0%, blue 150%);
+    color: transparent;
+    background-clip: text;
+    font-weight: bold;
+}
+
+.banner {
+    background-color: black;
+    color:#E5E7EB;
+    padding: 16px 64px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    height: 128px;
+    margin: 0;
+    
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: fit-content;
+    width: 50%;
+}
+.cta{
+    background-color: #C7FFD8;
+    color: #333;
+}
+
+footer {
+    padding: 20px;
+    background: black;
+    color: white;
+}
+
+@media screen and (max-width: 1024px) {
+    .climate-crisis-title {
+        font-size: 64px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .climate-crisis-title {
+        font-size: 32px;
+    }
+}
