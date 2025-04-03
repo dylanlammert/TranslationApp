@@ -4,7 +4,8 @@ https://gtts.readthedocs.io/en/latest/
 """
 
 from gtts import gTTS
-from playsound import playsound
+#Find a new library to use playsound has too many bugs
+from playsound3 import playsound
 
 # @brief This function calls the gTTS google API method that takes
 #        a textinput and saves a mp3 file of a voice bot saying the
@@ -28,3 +29,7 @@ async def textTS(textinput, tolang):
 
 # Next Steps: an offline version of this
 # look here for more info https://thepythoncode.com/article/convert-text-to-speech-in-python 
+
+if __name__ == '__main__':
+    import asyncio
+    asyncio.run(textTS("Hello, how are you?", 'en'));

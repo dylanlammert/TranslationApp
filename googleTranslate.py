@@ -6,7 +6,7 @@ from googletrans import Translator
 import speechRecognition as sTT
 from textToSpeech import textTS as tTS
 import asyncio
- 
+from datetime import datetime
 
 # @brief this function is the main shell to specify when each subfunction is run 
 #        the user selects native langauge and the language they want to translate to. 
@@ -29,10 +29,19 @@ async def startTranslating(fromlang, tolang):
         if (someinput == -1 or someinput == 1 ):
             print("Translation stopped!")
             break
+        now = datetime.now()
+        print('Start time= ' + now.strftime("%H:%M:%S"))
         translatedText = await translateText(str(someinput), fromlang, tolang)
         print(translatedText)
+        now = datetime.now()
+        print('midpoint time= ' + now.strftime("%H:%M:%S"))
         await tTS(translatedText, tolang)
-
+        now = datetime.now()
+        print('End time= ' + now.strftime("%H:%M:%S"))
+'''
+I will change this to a c++ multithreaded controller for the program 
+that calls python scripts to work around the Python GIL
+'''
 
 # @brief This function takes an input and calls the google translate
 #        API to translate it to a specified language. 
@@ -62,13 +71,12 @@ async def translateText( someinput, fromlang, tolang ):
 # use this to return a text view
 async def translateSTT(fromlang, tolang):
     someinput = await sTT.speechToText()
-    if (someinput == -1 or someinput == 1 ):
-        print("Translation stopped!")
-    
     translatedText = await translateText(str(someinput), fromlang, tolang)
     print(translatedText)
     return translatedText
 
+if __name__ == '__main__':
+    asyncio.run(startTranslating('en', 'es'))
 # this will be moved to main.py once I finish testing the functions 
 
 

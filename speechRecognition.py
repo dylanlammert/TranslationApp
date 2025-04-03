@@ -2,7 +2,6 @@
 @github repo https://github.com/Uberi/speech_recognition/blob/offline-recognition/examples/microphone_recognition.py 
 """
 import speech_recognition as speech
-
 # @brief This funtion calls upon the speech_recognition library from pypi  to grab 
 #        audio from the users microphone and sends that data to a google API to convert
 #        it to text. 
@@ -18,14 +17,15 @@ async def speechToText():
     r = speech.Recognizer()
     with speech.Microphone() as source:
         print("say something")
-        r.adjust_for_ambient_noise(source, duration = .5)
-        audioinput = r.listen(source)
+        r.energy_threshold = 4000
+        r.adjust_for_ambient_noise(source, duration= 1)
+        audioinput = r.listen(source, timeout=10,phrase_time_limit=None)
         
     try:
         # for testing purposes, we're just using the default API key
         # to use another API key, use `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
         # instead of `r.recognize_google(audio)`
-        text = r.recognize_google(audioinput)
+        text = r.recognize_google(audioinput, language = 'en-US' )
         return text
     except speech.UnknownValueError:
         print("Google Speech Recognition could not understand audio")
@@ -34,6 +34,8 @@ async def speechToText():
         print("Could not request results from Google Speech Recognition service; {0}".format(e))
         return 1
 
+if __name__ == '__main__':
+    print(speechToText())
 
 """
 Copyright (c) 2014-, Anthony Zhang <azhang9@gmail.com>
