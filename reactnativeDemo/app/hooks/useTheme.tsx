@@ -27,9 +27,9 @@ const lightScheme: ColorScheme = {
     textMuted: '#8E8E93',
     border: '#C7C7CC',
     primary: '#007AFF',
-    secondary: '#FF3B30',
+    secondary: '#8dbffcff',
     gradient: {
-        background: ['#FFFFFF', '#F5F5F5'],
+        background: ['#FFFFFF', '#e7e7e7ff'],
         primary: ['#007AFF', '#0055D4'],
     },
     backgrounds: {
@@ -47,7 +47,7 @@ const darkScheme: ColorScheme = {
     textMuted: '#8E8E93',
     border: '#3C3C43',
     primary: '#0A84FF',
-    secondary: '#FF3B30',
+    secondary: '#000dc2ff',
     gradient: {
         background: ['#333333ff', '#000000ff'],
         primary: ['#0A84FF', '#0055D4'],

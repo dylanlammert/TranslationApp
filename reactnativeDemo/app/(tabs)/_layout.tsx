@@ -1,5 +1,5 @@
 import useTheme from "@/hooks/useTheme";
-import { Entypo, Ionicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 const TabsLayout = () => {
     const {colors} = useTheme();
@@ -25,8 +25,8 @@ const TabsLayout = () => {
                 borderBottomWidth:1,
             }
         }}>
-            <Tabs.Screen name="index" options={{title:"" ,tabBarLabel: "Text-Text", tabBarIcon: ({color,size}) => ( <Entypo name="message" size={size} color={color}/>)}}/>
-            <Tabs.Screen name="conversationMode" options={{title:"" ,tabBarLabel: "Conversation", tabBarIcon: ({color,size}) => ( <Ionicons name="people"size={size} color={color}/>)}}/>
+            <Tabs.Screen name="index" options={{title:"" ,tabBarLabel: "Text-to-Text", tabBarIcon: ({color,size}) => ( <Ionicons name="language" size={size} color={color}/>)}}/>
+            {/*<Tabs.Screen name="conversationMode" options={{title:"" ,tabBarLabel: "Conversation", tabBarIcon: ({color,size}) => ( <Ionicons name="people"size={size} color={color}/>)}}/>*/}
             <Tabs.Screen name="settings" options={{title:"" ,tabBarLabel: "settings", tabBarIcon: ({color,size}) => ( <Ionicons name="settings" size={size} color={color}/>)}}/>
 
         </Tabs>
