@@ -16,6 +16,9 @@ const settings = () => {
                     alignItems: "center",
                 }}
                 >
+            <View>
+                <Text></Text>
+            </View>
             <TouchableOpacity onPress={toggleDarkMode} >
                             
                 <Text style={{ color: colors.text }}>Change Theme</Text>
