@@ -8,7 +8,7 @@ import { translate } from "@vitalets/google-translate-api";
 import { Audio } from "expo-av";
 import { LinearGradient } from 'expo-linear-gradient';
 import { useEffect, useState } from "react";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Text, TextInput, TouchableOpacity, View, } from "react-native";
 /**
  * Current Issues:
  *  - sending too many requests to GT api getting timeout error
