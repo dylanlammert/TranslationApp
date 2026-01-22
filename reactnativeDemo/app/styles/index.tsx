@@ -1,3 +1,5 @@
+import historyContext from "@/hooks/historyContext";
+import {loadStack, pushTranslation} from "@/hooks/historyContext";
 import useTheme from "@/hooks/useTheme";
 import languageArray from "@/languages";
 import { containers } from "@/styles/containerStyles";
@@ -19,6 +21,7 @@ import { Text, TextInput, TouchableOpacity, View } from "react-native";
 export default function Index() {
     const {toggleDarkMode} = useTheme();
     const {colors} = useTheme();
+    const {historyEnabled} = historyContext();
 
     // Define message and setMessage for sending text input to GoogleTranslate API 
     const [message, setMessage] = useState("");

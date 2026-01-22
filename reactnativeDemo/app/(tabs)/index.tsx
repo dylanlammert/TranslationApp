@@ -1,4 +1,5 @@
 import useTheme from "@/hooks/useTheme";
+import historyContext from "@/hooks/historyContext";
 import languageArray from "@/languages";
 import { containers } from "@/styles/containerStyles";
 import { fonts } from "@/styles/fonts";
@@ -32,6 +33,7 @@ export default function Index() {
     const [recording, setRecording] = useState<Audio.Recording | null> (null);
     const [permissionResponse, requestPermission] = Audio.usePermissions();
 
+    /*
     async function startRecording() {
         try {
             if(permissionResponse?.status !== 'granted') {
@@ -61,7 +63,8 @@ export default function Index() {
         });
         const uri = recording.getURI();
         console.log('Recording stopped and stored at', uri);
-  }
+    }
+    */
     useEffect(() => {
         const timeout = setTimeout(() => {
             setDebouncedMessage(message);
@@ -155,9 +158,13 @@ export default function Index() {
                         ))}
                     </Picker>
                 </View>
+
+                {/* Below is code for a future audio input option
+
                 <TouchableOpacity onPress={recording ? stopRecording : startRecording} style= {{...containers.flexContainer}}>
                     <Ionicons name={recording ? "mic-off-outline" : "mic"} size={30} color={colors.primary}/>
                 </TouchableOpacity>
+                */}
                 <View style= {{
                     ...containers.pickerContainer, 
                     borderColor:colors.border,

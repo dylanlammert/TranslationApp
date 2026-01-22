@@ -27,6 +27,19 @@ export const containers = StyleSheet.create({
         borderRadius: 10,
         display: "flex",
         justifyContent: "center",
-    }
+    },
 
+    cardContainer: {
+        borderRadius: 10,
+        height: "auto",
+        width: "100%",
+        padding: 16,
+
+    },
+
+    settingItem: {
+        height: 50,
+        width: "100%",
+        borderTopWidth: 1,
+    }
 })
