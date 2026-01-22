@@ -30,8 +30,8 @@ export default function Index() {
     const [translatedMessage, setTranslatedMessage] = useState("");
     const [fromLanguageCode, setFromLanguageCode] = useState("");
     const [toLanguageCode, setToLangauageCode] = useState("");
-    const [recording, setRecording] = useState<Audio.Recording | null> (null);
-    const [permissionResponse, requestPermission] = Audio.usePermissions();
+    //const [recording, setRecording] = useState<Audio.Recording | null> (null);
+    //const [permissionResponse, requestPermission] = Audio.usePermissions();
 
     /*
     async function startRecording() {
