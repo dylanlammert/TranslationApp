@@ -1,5 +1,5 @@
 import useTheme from "@/hooks/useTheme";
-import historyContext from "@/hooks/historyContext";
+import { createHistoryEntry, pushTranslation, useHistory } from "@/hooks/historyContext";
 import languageArray from "@/languages";
 import { containers } from "@/styles/containerStyles";
 import { fonts } from "@/styles/fonts";
@@ -12,20 +12,20 @@ import { useEffect, useState } from "react";
 import { Text, TextInput, TouchableOpacity, View, } from "react-native";
 /**
  * Current Issues:
- *  - sending too many requests to GT api getting timeout error
- * [] move change theme to settings
- * [] create submit button
+ * [√] create submit button
  * [] create a recent languages setion within the picker items
- * [] Finish design on settings tab
- * [] create history stack utilizing async local storage
+ * [√] ish design on settings tab
+ * [√] create history stack utilizing async local storageFin
  * [] fix header so that phone utility bar shows
- * [] create button in between language pickers for voice input
+ * [X] create button in between language pickers for voice input
  */
 export default function Index() {
     const {colors} = useTheme();
+    const {historyEnabled, toggleHistory} = useHistory();
 
     // Define message and setMessage for sending text input to GoogleTranslate API 
     const [message, setMessage] = useState("");
+
     const [debouncedMessage, setDebouncedMessage] = useState("");
     const [translatedMessage, setTranslatedMessage] = useState("");
     const [fromLanguageCode, setFromLanguageCode] = useState("");
@@ -65,6 +65,21 @@ export default function Index() {
         console.log('Recording stopped and stored at', uri);
     }
     */
+
+    async function sendMessage(text:string) {
+        const result = await translate(text, {
+            from: fromLanguageCode,
+            to: toLanguageCode,
+        })
+
+        setTranslatedMessage(result.text);
+
+        if(historyEnabled) {
+            pushTranslation(createHistoryEntry(text,result.text, fromLanguageCode, toLanguageCode))
+        };
+    };
+
+
     useEffect(() => {
         const timeout = setTimeout(() => {
             setDebouncedMessage(message);
@@ -76,19 +91,7 @@ export default function Index() {
     useEffect(() => {
         if(!debouncedMessage.trim()) return;
 
-        async function sendMessage() {
-            console.log("sending '" + debouncedMessage + "' to Google Translate");
-            
-            const result = await translate(debouncedMessage, {
-                from: fromLanguageCode,
-                to: toLanguageCode,
-            });
-            
-
-        // set the var translatedMessage to the text result from the obj that got returned by translate()
-            setTranslatedMessage(result.text);
-        }
-         sendMessage(); 
+        sendMessage(debouncedMessage); 
     }, [debouncedMessage]);
 
     return (
@@ -106,6 +109,7 @@ export default function Index() {
                 // message will be the value within the text input
                 value={message}
                 onChangeText={setMessage}
+                onSubmitEditing={() => sendMessage(message)}
                 style={{
                 width: "100%",
                 borderWidth: 1,

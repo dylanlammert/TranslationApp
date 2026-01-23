@@ -1,23 +1,38 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import type { TranslationHistoryEntry } from "@/types/TranslationHistoryEntry";
+import type { HistoryContextType } from "@/types/HistoryContextType";
 
-// create a stack that can hold at most 100 past translations
-// each stack slot holds an entry object that looks like the following
-type TranslationHistoryEntry = {
-    id: string;
-    sourceText: string;
-    translatedText: string;
-    sourceLang: string;
-    toLang: string;
-};
+// this is the key to retrieve the history from Aysnc storage
+const key:string = "translationStack";
+// this represents the masSize of the TranslationHistoryEntry array
+const maxSize:number = 50;
+// create a uniqueId for each TranslationStackEntry
+let uniqueId:number = 1;
 
-type HistoryContextType = {
-    historyEnabled: boolean;
-    toggleHistory: () => void;
-};
-
-const key = "translationStack";
-const maxSize = 50;
+/**
+ * 
+ * @param sourceText 
+ * @param translatedText 
+ * @param sourceLang 
+ * @param toLang 
+ * @returns newEntry type of TranslationHistoryEntry
+ */
+export function createHistoryEntry(sourceText:string,translatedText:string,sourceLang:string,toLang:string) : TranslationHistoryEntry {
+    const newEntry: TranslationHistoryEntry = {
+        id: uniqueId,
+        sourceText: sourceText,
+        translatedText: translatedText,
+        sourceLang: sourceLang,
+        toLang: toLang,
+    };
+    if(uniqueId == 50) {
+        uniqueId = 1;
+    } else {
+        uniqueId = uniqueId + 1;
+    }
+    return newEntry
+}
 /**
  * 
  * @returns either an empty array or an array filled with TranslationHistoryEntry
@@ -53,9 +68,10 @@ export async function deleteStack() {
 };
 
 const HistoryContext = createContext<HistoryContextType | undefined>(undefined);
-// create a settingscontext to wrap the application
+// create a settings context to wrap the application
 export const HistoryProvider = ({ children }: { children: ReactNode}) => {
     const [historyEnabled, setIsHistoryOn] = useState(false);
+    const [history, setHistory] = useState<TranslationHistoryEntry[]>([]);
 
     useEffect(() => {
         AsyncStorage.getItem("historyEnabled").then((value) => {
@@ -74,19 +90,19 @@ export const HistoryProvider = ({ children }: { children: ReactNode}) => {
 
 
     return (
-        <HistoryContext.Provider value={{ historyEnabled, toggleHistory}}>
+        <HistoryContext.Provider value={{ historyEnabled, toggleHistory, history}}>
             {children}
         </HistoryContext.Provider>
     );
 };
 
-const historyContext = () => {
+export const useHistory = () => {
     const context = useContext(HistoryContext);
     if (context === undefined) {
-        throw new Error("historyContext must be used within a HistoryProvider class");
+        throw new Error("useHistory must be used within a HistoryProvider class");
     }
 
     return context;
 };
 
-export default historyContext;
+export default useHistory;

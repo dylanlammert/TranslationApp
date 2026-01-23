@@ -1,15 +1,23 @@
 
 import { StyleSheet } from "react-native";
 
-
 export const containers = StyleSheet.create({
     flexContainer: {
+        boxSizing: "border-box",
         display: "flex",
         justifyContent: "center",
+        width: "100%",
+        height: "100%",
+        padding: 16,
+        gap:16,
     },
     rowContainer: {
         display: "flex",
         flexDirection: "row",
+    },
+    columContainer: {
+        display: "flex",
+        flexDirection: "column",
     },
     
     pickerParentContainer: {
@@ -34,6 +42,7 @@ export const containers = StyleSheet.create({
         height: "auto",
         width: "100%",
         padding: 16,
+        gap: 32,
 
     },
 
@@ -41,5 +50,10 @@ export const containers = StyleSheet.create({
         height: 50,
         width: "100%",
         borderTopWidth: 1,
+    },
+    historyItem: {
+        borderBottomWidth: 1,
     }
 })
+
+export default containers;

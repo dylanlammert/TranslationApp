@@ -1,11 +1,11 @@
 import useTheme from "@/hooks/useTheme";
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
-import { Text, TouchableOpacity, View, Switch, Alert } from 'react-native';
+import { Text, View, Switch, Alert } from 'react-native';
 import {containers} from "@/styles/containerStyles";
 import { fonts } from "@/styles/fonts";
 import historyContext from "@/hooks/historyContext";
-import { deleteStack } from "@/hooks/historyContext";
+import {Link} from "expo-router";
 
 const settings = () => {
         const {isDarkMode, toggleDarkMode} = useTheme();
@@ -16,16 +16,10 @@ const settings = () => {
         <LinearGradient
                 colors = {colors.gradient.background}
                 style={{
-                    flex: 1,
-                    justifyContent: "flex-start",
-                    alignItems: "center",
+                    ...containers.flexContainer,
                 }}
                 >
             
-            <TouchableOpacity onPress={toggleDarkMode} >
-                            
-                <Text style={{ color: colors.text }}>Change Theme</Text>
-            </TouchableOpacity>
             {/* 
                 This is the start of the preferences list
             */}
@@ -71,34 +65,53 @@ const settings = () => {
                     ></Switch>
                 </View>
                 
-                {/*  */}
-                <View style= {{
-                    ...containers.settingItem,
-                    ...containers.rowContainer,
-                    alignContent: "center",
-                    justifyContent: "space-between",
-                    borderColor: colors.border,
-                }}>
-                    {/* Left Side */}
-                    <View style = {{justifyContent: "center"}}>
-                        <Text style={{
-                            ...fonts.h2,
-                            color: colors.text,
-                            fontWeight: 100,
-                            
-                            }}>Save Translation History
-                        </Text>
+                <View>
+                    <View style= {{
+                        ...containers.settingItem,
+                        ...containers.rowContainer,
+                        alignContent: "center",
+                        justifyContent: "space-between",
+                        borderColor: colors.border,
+                    }}>
+                        {/* Left Side */}
+                        <View style = {{justifyContent: "center"}}>
+                            <Text style={{
+                                ...fonts.h2,
+                                color: colors.text,
+                                fontWeight: 100,
+                    
+                                }}>Save Translation History
+                            </Text>
+                        </View>
+                        <Switch
+                        value= {historyEnabled}
+                        onValueChange={historyWarning}
+                        thumbColor={"white"}
+                        trackColor={{false: colors.textMuted, true: colors.textMuted}}
+                        style= {{
+                            transform: [{scale: 1.5}],
+                        }}
+                        ></Switch>
+                    
                     </View>
-                    <Switch 
-                    value= {historyEnabled}
-                    onValueChange={historyWarning}
-                    thumbColor={"white"}
-                    trackColor={{false: colors.textMuted, true: colors.textMuted}}
-                    style= {{
-                        transform: [{scale: 1.5}],
-                    }}
-                    ></Switch>
+                    <View style= {{
+                    ...containers.rowContainer,
+                    gap: 4,
+                    }}>
+                        <Text style= {{
+                            ...fonts.text,
+                            color: colors.textMuted,
+                        }}>
+                            See previous translation history
+                            
+                        </Text>
+                        <Link href="../history" style= {{...fonts.text, color: colors.primary}}>
+                            here
+                        </Link>    
+                    
+                    </View>
                 </View>
+                
             </View>
         </LinearGradient>
     )

@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export const fonts = StyleSheet.create({
     text: {
         fontFamily: 'System',
-        fontSize: 16
+        fontSize: 14
     },
 
     h1: {
@@ -16,5 +16,11 @@ export const fonts = StyleSheet.create({
         fontFamily: 'System',
         fontSize: 24,
         fontWeight: 'bold',
+    },
+    
+    link: {
+
     }
 });
+
+export default fonts;

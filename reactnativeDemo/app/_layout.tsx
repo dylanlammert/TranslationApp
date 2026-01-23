@@ -5,13 +5,13 @@ import { HistoryProvider } from "./hooks/historyContext"
 export default function RootLayout() {
     
     return (
-        <ThemeProvider>
-            <HistoryProvider>
+        <HistoryProvider>
+            <ThemeProvider>
                 <Stack>
-                    {/* Edit the content found within the header */}
                     <Stack.Screen name="(tabs)" options={{ headerShown: false}} />
+                    <Stack.Screen name="history" options={{presentation:'modal',}} />
                 </Stack>
-            </HistoryProvider>
-        </ThemeProvider>
+            </ThemeProvider>
+        </HistoryProvider>
         );
 }

@@ -1,8 +1,4 @@
-// define the language object structure
-type LanguageOption = { 
-    label: string;
-    value: string;
-}
+import type { LanguageOption } from "./types/LanguageOption";
 
 // create list of langauges
 const languageArray : LanguageOption[] =[
